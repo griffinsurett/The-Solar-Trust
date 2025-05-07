@@ -34,7 +34,7 @@ import Heading from "@/components/Heading";
     ]}
     ,
     description=`"At ${SiteData.title}, our mission is to prioritize you. When you choose to work with us, you’re not just another client—you’re part of our family. Unlike many companies tied to specific solar installers, we work solely for your best interests. We fight to secure the highest-quality products at the most competitive prices and make sure the process is smooth and stress-free every step of the way. From the first consultation to turning on your solar system, we’ll be by your side, ready to answer any question or resolve any issue. With us, you're never on your own—just call, and we’re here to help."`
-    descriptionClass="lg:w-3/5 w-full text-bg lg:text-center text-justify text-2xl italic"
+    descriptionClass="lg:w-3/5 w-full text-bg text-center text-2xl italic"
     headingAreaClass="flex flex-col items-center justify-center text-center gap-[var(--spacing-xs)]"
     childPlacement="top-content-section"
     ,
@@ -46,13 +46,23 @@ import Heading from "@/components/Heading";
       },
       // overlayClass: "opacity-60 filter brightness-50 bg-cover bg-center xl:bg-fixed",
     }}
-    sectionClass="min-h-[100vh] md:min-h-[125vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
+    sectionClass="min-h-[125vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
     contentClass="flex flex-col-reverse content-container"
   >
-    <div
-      class="quotation text-[200px] leading-none flex justify-center items-center p-0 m-0"
-    >
-      "
+    <div class="
+    overflow-hidden">
+      <p
+        class="quotation text-bg
+    italic
+    leading-none
+    flex
+    justify-center
+    items-center
+    p-0
+    m-0"
+      >
+        "
+      </p>
     </div>
     <div class="founder flex justify-center items-center flex-col">
       <Image
@@ -74,17 +84,21 @@ import Heading from "@/components/Heading";
     sectionClass="text-center flex justify-center min-h-[50vh] items-center flex-col gap-[var(--spacing-lg)]"
     contentClass="content-container"
     headingAreaClass="w-full flex justify-center flex-col items-center gap-[var(--spacing-lg)]"
-    heading={{ text: "Take your first step towards solar.", tagName: "h2", class: "h2 font-bold text-primary" }}
+    heading={{
+      text: "Take your first step towards solar.",
+      tagName: "h2",
+      class: "h2 font-bold text-primary",
+    }}
     description="We would love to sit down with you and help you explore your options. In a 60-minute meeting we could help you discover if solar is a good fit for you and your home, and see how much solar could save you. A consulation is FREE of charge and has no strings attached."
-    descriptionClass="lg:w-3/5 w-full text-bg-dark lg:text-center text-justify"
+    descriptionClass="lg:w-3/5 w-full text-bg-dark text-center"
     buttons={[
       {
-      text: "Book a Consultation",
-      link: "/contact-us",
-      class: "btn-primary",
-      }
+        text: "Book a Consultation",
+        link: "/contact-us",
+        class: "btn-primary",
+      },
     ]}
-  ></Section>
+  />
 
   <!-- Clients -->
   <!-- <Section
