@@ -63,6 +63,10 @@ body {
   @apply w-19/20 text-bg flex justify-between items-center p-[var(--spacing-sm)];
 }
 
+.content-container {
+  @apply w-18/20 lg:w-full;
+}
+
 /* Global header styles (these are our dynamic header classes) */
 .h1 {
   @apply text-3xl lg:text-5xl font-bold;
