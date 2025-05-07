@@ -44,7 +44,7 @@ const breakpoint = "lg";
       listClass: "flex gap-[var(--spacing-md)]"
     }}
     hamburgerMenu={{
-      hamburgerIconClass: "custom-hamburger-icon",
+      hamburgerIconClass: "custom-hamburger-icon text-primary",
       hamburgerIconTransform: true,
       menuBackground: "bg-bg bg-opacity-75",
       menuItem: { component: MenuItem, class: "text-text" },
@@ -58,7 +58,7 @@ const breakpoint = "lg";
     <div class="hidden lg:flex">
       <Button variant="primary" href={`tel:${ContactData.phone}`}>{ContactData.phone}</Button>
     </div>
-    <PhoneIcon className="lg:hidden h-7 w-auto text-primary" />
+    <PhoneIcon className="lg:hidden h-6 w-auto" />
   </div>
 
   </div>
