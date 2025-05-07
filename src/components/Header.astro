@@ -53,13 +53,12 @@ const breakpoint = "lg";
   />
   <div class="button-container">
     <div class="hidden lg:flex">
-      <Button variant="primary" href={`tel:${ContactData.phone}`}>{ContactData.phone}</Button>
+      <Button variant="primary" href={`/contact-us`}>{ContactData.phone}</Button>
     </div>
     <a href={`tel:${ContactData.phone}`}>
-      <PhoneIcon className="lg:hidden h-6 w-auto">
-      </PhoneIcon>
+      <PhoneIcon className="lg:hidden block h-6 w-auto text-bg-dark"></PhoneIcon>
     </a>
-  
+
   </div>
 </div>
   </div>
