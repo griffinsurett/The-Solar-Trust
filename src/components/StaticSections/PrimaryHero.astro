@@ -4,16 +4,13 @@ import Section from "@/components/Section.astro";
 import HeroBg from "@/assets/Landing-Page-Background-1-scaled.jpg";
 import { SiteData } from "@/content/SiteData";
 import { Image } from "astro:assets";
+import ContactForm from "@/components/Forms/ContactForm.astro";
+import Heading from "../Heading";
 ---
 
 <Section
-  heading={{
-    text: SiteData.tagline,
-    tagName: "h2",
-    class: "h2 font-bold text-bg py-[var(--spacing-lg)]",
-  }}
-  description={SiteData.description}
-  descriptionClass="lg:w-2/3 w-full text-bg lg:text-center text-justify"
+  sectionClass="min-h-[150vh] md:min-h-[150vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
+  contentClass="flex flex justify-center items-center md:min-h-[90vh] lg:w-full w-9/10"
   backgroundMedia={{
     image: {
       src: HeroBg,
@@ -21,20 +18,37 @@ import { Image } from "astro:assets";
     },
     // overlayClass: "bg-black opacity-50",
   }}
+>
+<div class="inner-section flex flex-col justify-center items-center gap-[var(--spacing-lg)]">
+  <Section
+    heading={{
+      text: SiteData.tagline,
+      tagName: "h2",
+      class: "h2 font-bold text-bg py-[var(--spacing-lg)]",
+    }}
+    description={SiteData.description}
+    descriptionClass="lg:w-2/3 w-full text-bg lg:text-center text-justify"
     headingAreaClass="flex flex-col items-center justify-center text-center"
-    sectionClass="min-h-[100vh] md:min-h-[200vh] flex items-center lg:items-start justify-center z-100 text-bg bg-[#2b2b2b] text-center"
-    contentClass="flex flex-col-reverse flex justify-center items-center md:min-h-[90vh] lg:w-7/10 w-9/10"
     buttonsSectionClass="mt-[var(--spacing-xl)]"
     childSlotClass="order-1 text-center md:text-left flex justify-center items-center"
->
-  <Image
-    src={SiteData.logo.src}
-    alt={`${SiteData.title} logo`}
-    class="h-auto w-150"
-    format="webp"
-    loading="eager"
-    quality="low"
-    fetchpriority="high"
-    aria-hidden="true"
-  />
+    contentClass="flex flex-col-reverse"
+  >
+    <Image
+      src={SiteData.logo.src}
+      alt={`${SiteData.title} logo`}
+      class="h-auto w-150"
+      format="webp"
+      loading="eager"
+      quality="low"
+      fetchpriority="high"
+      aria-hidden="true"
+    />
+  </Section>
+  <div class="form-container lg:w-2/3 bg-text/85 shadow-lg p-[var(--spacing-lg)]">
+    <Heading tagName={"h3"}>
+      Get Quote
+    </Heading>
+    <ContactForm/>
+  </div>
+</div>
 </Section>
