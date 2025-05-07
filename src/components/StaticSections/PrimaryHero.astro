@@ -3,23 +3,36 @@
 import Section from "@/components/Section.astro";
 import HeroBg from "@/assets/Landing-Page-Background-1-scaled.jpg";
 import { SiteData } from "@/content/SiteData";
+import { Image } from "astro:assets";
 ---
+
 <Section
-  heading={
-    {
-      text: SiteData.tagline,
-      tagName: "h1",
-      className: "text-4xl md:text-6xl lg:text-7xl font-bold text-bg",
-    }
-  }
-    description={SiteData.description}
-    backgroundMedia={{
-        image: {
-        src: HeroBg,
-        imageClass: "filter bg-cover bg-center",
-        },
-        // overlayClass: "bg-black opacity-50",
-    }}
-  buttonsSectionClass="mt-[var(--spacing-xl)]"
-  sectionClass="min-h-[100vh] md:min-h-[200vh] flex items-center justify-center bg-cover bg-fixed bg-center z-100 md:p-[var(--spacing-lg)] text-bg text-xl bg-[#2b2b2b]"
-/>
+  heading={{
+    text: SiteData.tagline,
+    tagName: "h1",
+    className: "font-bold text-bg mb-[var(--spacing-md)]",
+  }}
+  description={SiteData.description}
+  backgroundMedia={{
+    image: {
+      src: HeroBg,
+      imageClass: "filter bg-cover bg-center",
+    },
+    // overlayClass: "bg-black opacity-50",
+  }}
+    sectionClass="min-h-[100vh] md:min-h-[200vh] flex items-start justify-center z-100 text-bg bg-[#2b2b2b] text-center"
+    contentClass="flex flex-col-reverse flex justify-center items-center md:min-h-[100vh] w-7/10 gap-[var(--spacing-md)]"
+    buttonsSectionClass="mt-[var(--spacing-xl)]"
+    childSlotClass="order-1 text-center md:text-left flex justify-center items-center gap-[var(--spacing-md)]"
+>
+  <Image
+    src={SiteData.logo.src}
+    alt={`${SiteData.title} logo`}
+    class="h-auto w-150"
+    format="webp"
+    loading="eager"
+    quality="low"
+    fetchpriority="high"
+    aria-hidden="true"
+  />
+</Section>
