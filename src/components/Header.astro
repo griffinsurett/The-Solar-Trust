@@ -5,6 +5,7 @@ import Menu from "../components/Menu/Menu.astro";
 import MenuItem from "../components/Menu/BarMenu/MenuItem.astro"; // default main menu item
 import { Image } from "astro:assets";
 import Button from "./Button";
+import PhoneIcon from "./Phone";
 
 const MainNavMenu = [
   { id: "home", label: "Home", slug: "/" },
@@ -53,7 +54,14 @@ const breakpoint = "lg";
     }}
     isHierarchical={true}
   />
-  <Button variant="primary" href={`tel:${ContactData.phone}`}>{ContactData.phone}</Button>
+  <div class="button-container">
+    <div class="hidden lg:flex">
+      <Button variant="primary" href={`tel:${ContactData.phone}`}>{ContactData.phone}</Button>
+    </div>
+    <PhoneIcon className="lg:hidden h-8 w-auto" />
   </div>
+
+  </div>
+  
 
 </header>

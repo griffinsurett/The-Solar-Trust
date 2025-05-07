@@ -9,10 +9,11 @@ import { Image } from "astro:assets";
 <Section
   heading={{
     text: SiteData.tagline,
-    tagName: "h1",
-    className: "font-bold text-bg mb-[var(--spacing-md)]",
+    tagName: "h2",
+    class: "h2 font-bold text-bg py-[var(--spacing-lg)]",
   }}
   description={SiteData.description}
+  descriptionClass="lg:w-2/3 w-auto text-bg text-center"
   backgroundMedia={{
     image: {
       src: HeroBg,
@@ -20,10 +21,11 @@ import { Image } from "astro:assets";
     },
     // overlayClass: "bg-black opacity-50",
   }}
-    sectionClass="min-h-[100vh] md:min-h-[200vh] flex items-start justify-center z-100 text-bg bg-[#2b2b2b] text-center"
-    contentClass="flex flex-col-reverse flex justify-center items-center md:min-h-[100vh] w-7/10 gap-[var(--spacing-md)]"
+    headingAreaClass="flex flex-col items-center justify-center text-center"
+    sectionClass="min-h-[100vh] md:min-h-[200vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
+    contentClass="flex flex-col-reverse flex justify-center items-center md:min-h-[90vh] w-7/10"
     buttonsSectionClass="mt-[var(--spacing-xl)]"
-    childSlotClass="order-1 text-center md:text-left flex justify-center items-center gap-[var(--spacing-md)]"
+    childSlotClass="order-1 text-center md:text-left flex justify-center items-center"
 >
   <Image
     src={SiteData.logo.src}

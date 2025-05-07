@@ -71,7 +71,7 @@ body {
   @apply text-base font-medium md:text-lg;
 }
 p {
-    @apply mb-4 leading-relaxed text-base;
+    @apply mb-4 leading-relaxed font-thin text-base capitalize;
   }
 }
 
