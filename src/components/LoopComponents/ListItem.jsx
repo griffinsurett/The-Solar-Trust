@@ -15,11 +15,11 @@ export default function ListItem({ item, collectionName, HasPage }) {
             <img
               src={item.data.icon}
               alt="Icon"
-              className={`w-8 h-8 bg-[var(--color-accent)] rounded-full`}
+              className={`w-8 h-8 bg-[var(--color-primary)] rounded-full`}
             />
           )}
           {!item.data.icon && (
-            <div className={`w-8 h-8 bg-[var(--color-accent)] rounded-full`} />
+            <div className={`w-8 h-8 bg-[var(--color-primary)] rounded-full`} />
           )}
         </div>
         <div>

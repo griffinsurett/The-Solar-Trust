@@ -3,7 +3,7 @@ import ButtonIcon from "./ButtonIcon";
 
 // Default base button classes for non-underline variants.
 const baseButtonClasses =
-  "py-[var(--spacing-xs)] px-[var(--spacing-xl)] transform transition-all duration-300 ease-in-out rounded-full hover:scale-[1.02]";
+  "py-[var(--spacing-sm)] px-[var(--spacing-xl)] transform transition-all duration-300 ease-in-out rounded-full hover:scale-[1.02] uppercase font-bold";
 
 // Consolidate variant defaults.
 const buttonVariantDefaults = {
