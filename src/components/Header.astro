@@ -33,7 +33,7 @@ const breakpoint = "lg";
     </div>     -->
   </a>
 
-  <div class="header-right flex justify-center items-center gap-[var(--spacing-sm)]">
+  <div class="header-right flex flex-row-reverse lg:flex-row justify-center items-center gap-[var(--spacing-sm)]">
     <Menu 
     items={await buildMenuQueries({ MainNavMenu })} 
     breakpoint={breakpoint} 
@@ -58,7 +58,7 @@ const breakpoint = "lg";
     <div class="hidden lg:flex">
       <Button variant="primary" href={`tel:${ContactData.phone}`}>{ContactData.phone}</Button>
     </div>
-    <PhoneIcon className="lg:hidden h-8 w-auto" />
+    <PhoneIcon className="lg:hidden h-7 w-auto text-primary" />
   </div>
 
   </div>
