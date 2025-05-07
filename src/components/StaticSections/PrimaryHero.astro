@@ -13,7 +13,7 @@ import { Image } from "astro:assets";
     class: "h2 font-bold text-bg py-[var(--spacing-lg)]",
   }}
   description={SiteData.description}
-  descriptionClass="lg:w-2/3 w-auto text-bg text-center"
+  descriptionClass="lg:w-2/3 w-full text-bg lg:text-center text-justify"
   backgroundMedia={{
     image: {
       src: HeroBg,
@@ -23,7 +23,7 @@ import { Image } from "astro:assets";
   }}
     headingAreaClass="flex flex-col items-center justify-center text-center"
     sectionClass="min-h-[100vh] md:min-h-[200vh] flex items-center lg:items-start justify-center z-100 text-bg bg-[#2b2b2b] text-center"
-    contentClass="flex flex-col-reverse flex justify-center items-center md:min-h-[90vh] w-7/10"
+    contentClass="flex flex-col-reverse flex justify-center items-center md:min-h-[90vh] lg:w-7/10 w-9/10"
     buttonsSectionClass="mt-[var(--spacing-xl)]"
     childSlotClass="order-1 text-center md:text-left flex justify-center items-center"
 >
