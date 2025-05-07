@@ -47,23 +47,25 @@ import Heading from "@/components/Heading";
       // overlayClass: "opacity-60 filter brightness-50 bg-cover bg-center xl:bg-fixed",
     }}
     sectionClass="min-h-[125vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
-    contentClass="flex flex-col-reverse content-container"
+    contentClass="flex flex-col-reverse items-center justify-center content-container"
   >
-    <div class="
-    overflow-hidden">
-      <p
-        class="quotation text-bg
-    italic
-    leading-none
-    flex
-    justify-center
-    items-center
-    p-0
-    m-0"
-      >
-        "
-      </p>
-    </div>
+  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="220" height="220"
+  viewBox="0 0 120 120"
+  overflow="hidden"
+>
+  <text
+    x="50%" y="50%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="serif"
+    font-size="100"
+    fill="currentColor"
+  >“</text>
+</svg>
+
+  
     <div class="founder flex justify-center items-center flex-col">
       <Image
         src={Owner}
