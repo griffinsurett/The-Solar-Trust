@@ -1,0 +1,408 @@
+---
+/**
+ * Section Component – Order of Importance for Heading and Description Values:
+ *
+ * 1. **Section Override:**
+ *    - Use the values passed directly via the Section props (i.e. the "heading" and "description" props).
+ *
+ * 2. **Meta Values:**
+ *    - If no direct override is provided, load the collection meta file (_meta.mdx, _meta.md, or _meta.json)
+ *      and use the "heading" and "description" defined there.
+ *
+ * 3. **Auto-Fallback:**
+ *    - If neither the Section props nor the meta file provide a value, automatically generate a default.
+ *      For the heading, this fallback is the collection slug capitalized (e.g., "services" becomes "Services").
+ *
+ * Extended to support a background media object for background videos and images.
+ * If a video is provided, it will be used as the background, with the background image as a poster/fallback.
+ * Otherwise, the provided image is optimized using Astro's getImage.
+ */
+// src/components/Section.astro
+import Heading from "./Heading.jsx";
+import Button from "./Button.jsx";
+import ItemsTemplate from "./ItemsTemplate.astro";
+import BackgroundMedia from "./BackgroundMedia.astro";
+import {
+  generateSectionId,
+  resolveMetaProps,
+  resolveHeading,
+  resolveDescription,
+  resolveButtonsArray,
+  getSectionItems,
+  resolveComponent,
+} from "@/utils/SectionUtils";
+import { capitalize } from "@/utils/ContentUtils";
+
+const {
+  variant: rawVariant,
+  collection: collectionName,
+  query: queryType,
+  component: ItemComponent,
+  heading,
+  description,
+  buttons,
+  sectionClass: rawSectionClass,
+  contentClass: rawContentClass,
+  itemsClass: rawItemsClass,
+  itemClass: rawItemClass,
+  buttonsSectionClass: rawButtonsSectionClass,
+  headingAreaClass: rawHeadingAreaClass,
+  backgroundMedia: rawBackgroundMedia,
+  topContentClass: rawTopContentClass = "",
+  itemPlacement: rawItemPlacement = "",
+  childPlacement: rawChildPlacement = "",
+  buttonsPlacement: rawButtonsPlacement = "",
+  childSlotClass: rawChildSlotClass = "",
+  client: rawClient,
+  ...props
+} = Astro.props;
+
+// helper to merge class names
+function mergeClass(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+// 1️⃣ Load meta + defaults
+const meta = await resolveMetaProps(collectionName, queryType);
+const defaultSection = meta.defaultSection || {};
+
+// 2️⃣ Determine variant
+const variantName = rawVariant ?? defaultSection.variant;
+
+// 3️⃣ Dynamically import SectionVariants if you actually have a variant
+let variantDefaults = {};
+if (variantName) {
+  // note the explicit “.js” extension so Vite can find it in production
+  const variantsModule = await import("./SectionVariants.js");
+  // grab the matching variant or fallback to {}
+  variantDefaults = variantsModule.SectionVariants?.[variantName] ?? {};
+}
+
+// 3️⃣ Merge all class props
+const sectionClass = mergeClass(
+  variantDefaults.sectionClass,
+  defaultSection.sectionClass,
+  rawSectionClass
+);
+const contentClass = mergeClass(
+  variantDefaults.contentClass,
+  defaultSection.contentClass,
+  rawContentClass
+);
+const itemsClass = mergeClass(
+  variantDefaults.itemsClass,
+  defaultSection.itemsClass,
+  rawItemsClass
+);
+const itemClass = mergeClass(
+  variantDefaults.itemClass,
+  defaultSection.itemClass,
+  rawItemClass
+);
+const buttonsSectionClass = mergeClass(
+  variantDefaults.buttonsSectionClass,
+  defaultSection.buttonsSectionClass,
+  rawButtonsSectionClass
+);
+const headingAreaClass = mergeClass(
+  variantDefaults.headingAreaClass,
+  defaultSection.headingAreaClass,
+  rawHeadingAreaClass
+);
+const topContentClass = mergeClass(
+  variantDefaults.topContentClass,
+  defaultSection.topContentClass,
+  rawTopContentClass
+);
+const childSlotClass = mergeClass(
+  variantDefaults.childSlotClass,
+  defaultSection.childSlotClass,
+  rawChildSlotClass
+);
+
+// 4️⃣ Background media fallback
+const backgroundMedia =
+  rawBackgroundMedia ??
+  variantDefaults.backgroundMedia ??
+  defaultSection.backgroundMedia;
+
+// 5️⃣ Placement props: override → variant → meta → fallback
+const itemPlacement =
+  rawItemPlacement ||
+  variantDefaults.itemPlacement ||
+  defaultSection.itemPlacement ||
+  "";
+const childPlacement =
+  rawChildPlacement ||
+  variantDefaults.childPlacement ||
+  defaultSection.childPlacement ||
+  "";
+const buttonsPlacement =
+  rawButtonsPlacement ||
+  variantDefaults.buttonsPlacement ||
+  defaultSection.buttonsPlacement ||
+  "content-section";
+
+// normalize to arrays
+const itemPlacementArray = Array.isArray(itemPlacement)
+  ? itemPlacement
+  : itemPlacement
+  ? [itemPlacement]
+  : [];
+const childPlacementArray = Array.isArray(childPlacement)
+  ? childPlacement
+  : childPlacement
+  ? [childPlacement]
+  : [];
+const buttonsPlacementArray = Array.isArray(buttonsPlacement)
+  ? buttonsPlacement
+  : buttonsPlacement
+  ? [buttonsPlacement]
+  : [];
+
+// 6️⃣ Generate section ID
+const sectionId = generateSectionId(
+  collectionName,
+  queryType,
+  Astro.url.pathname
+);
+
+// 7️⃣ Heading & description
+const finalHeadingArray = resolveHeading(
+  heading,
+  meta.heading,
+  collectionName
+);
+const finalDescription = resolveDescription(
+  description,
+  meta.description
+);
+
+// 8️⃣ Resolve item component + client
+const finalComponent = resolveComponent(
+  ItemComponent,
+  defaultSection.component
+);
+const finalClient = rawClient ?? defaultSection.client;
+
+// 9️⃣ Fetch dynamic items
+let items = [];
+const isDynamic = Boolean(collectionName && queryType);
+if (isDynamic) {
+  items = await getSectionItems(
+    queryType,
+    collectionName,
+    Astro.url.pathname
+  );
+  if (items.length === 0) return;
+}
+
+// 🔟 Buttons array
+const effectiveButtons =
+  buttons && buttons.length > 0 ? buttons : defaultSection.buttons;
+const buttonsArray = resolveButtonsArray(
+  effectiveButtons,
+  meta.hasPage,
+  collectionName,
+  Astro.url.pathname
+);
+const itemsDefaultHasPage = meta.itemsHasPage ?? false;
+---
+
+<section
+  id={sectionId}
+  data-collection={collectionName}
+  class={`${sectionClass} relative w-full ${
+    isDynamic
+      ? "py-[var(--spacing-lg)] lg:px-[var(--spacing-md)]"
+      : "lg:px-[var(--spacing-md)]"
+  }`}
+  {...props}
+>
+  {backgroundMedia && <BackgroundMedia backgroundMedia={backgroundMedia} />}
+
+  <div
+    class={`${contentClass} content-section relative z-10 w-3/4 ${
+      isDynamic ? "my-[var(--spacing-lg)]" : ""
+    }`}
+  >
+    <!-- === Top Content Wrapper === -->
+    <div class={`top-content-section ${topContentClass}`}>
+      <!-- Heading Area -->
+      <div class={`section-heading-area ${headingAreaClass}`}>
+        {finalHeadingArray.map((head, i) => {
+          const headObj = typeof head === "string" ? { text: head } : head;
+          const Tag = headObj.tagName || "h2";
+          return (
+            <Heading key={i} tagName={Tag} className={headObj.class || ""}>
+              {headObj.text}
+            </Heading>
+          );
+        })}
+        {finalDescription && (
+          <p class={description?.class}>{finalDescription}</p>
+        )}
+      </div>
+
+      <!-- Child slot at top? -->
+      {childPlacementArray.includes("top-content-section") && <slot />}
+
+      <!-- Items at top? -->
+      {itemPlacementArray.includes("top-content-section") && isDynamic && (
+        <>
+          <slot name="aboveItemsInjection" />
+          <ItemsTemplate
+            items={items}
+            collection={collectionName}
+            query={queryType}
+            itemsClass={itemsClass}
+            itemClass={itemClass}
+            ItemComponent={finalComponent}
+            HasPage={itemsDefaultHasPage}
+            pathname={Astro.url.pathname}
+            client={finalClient}
+          />
+          <slot name="belowItemsInjection" />
+        </>
+      )}
+
+      <!-- Buttons at top? (dynamic only) -->
+      {isDynamic &&
+        buttonsPlacementArray.includes("top-content-section") &&
+        buttonsArray.length > 0 && (
+          <div class={buttonsSectionClass}>
+            {buttonsArray.map((btn, idx) => {
+              const defaults = {
+                text: capitalize(collectionName),
+                link: `/${collectionName}`,
+                class: "",
+                variant: "primary",
+              };
+              const props = { ...defaults, ...btn };
+              return (
+                <Button
+                  key={idx}
+                  href={props.link}
+                  className={props.class}
+                  ariaLabel={props.text}
+                  variant={props.variant}
+                >
+                  {props.text}
+                </Button>
+              );
+            })}
+          </div>
+        )}
+
+      <!-- Buttons at top? (static only) -->
+      {!isDynamic &&
+        buttonsPlacementArray.includes("top-content-section") &&
+        buttonsArray.length > 0 && (
+          <div class={`${buttonsSectionClass} order-last`}>
+            {buttonsArray.map((btn, idx) => {
+              const defaults = {
+                text: capitalize(collectionName),
+                link: `/${collectionName}`,
+                class: "",
+                variant: "primary",
+              };
+              const props = { ...defaults, ...btn };
+              return (
+                <Button
+                  key={idx}
+                  href={props.link}
+                  className={props.class}
+                  ariaLabel={props.text}
+                  variant={props.variant}
+                >
+                  {props.text}
+                </Button>
+              );
+            })}
+          </div>
+        )}
+    </div>
+
+    <!-- === Main Items Block if not placed at top === -->
+    {!itemPlacementArray.includes("top-content-section") && isDynamic && (
+      <>
+        <slot name="aboveItemsInjection" />
+        <ItemsTemplate
+          items={items}
+          collection={collectionName}
+          query={queryType}
+          itemsClass={itemsClass}
+          itemClass={itemClass}
+          ItemComponent={finalComponent}
+          HasPage={itemsDefaultHasPage}
+          pathname={Astro.url.pathname}
+          client={finalClient}
+        />
+        <slot name="belowItemsInjection" />
+      </>
+    )}
+
+    <!-- Buttons in content-section? (dynamic only) -->
+    {isDynamic &&
+      buttonsPlacementArray.includes("content-section") &&
+      buttonsArray.length > 0 && (
+        <div class={buttonsSectionClass}>
+          {buttonsArray.map((btn, idx) => {
+            const defaults = {
+              text: capitalize(collectionName),
+              link: `/${collectionName}`,
+              class: "",
+              variant: "primary",
+            };
+            const props = { ...defaults, ...btn };
+            return (
+              <Button
+                key={idx}
+                href={props.link}
+                className={props.class}
+                ariaLabel={props.text}
+                variant={props.variant}
+              >
+                {props.text}
+              </Button>
+            );
+          })}
+        </div>
+      )}
+
+    <!-- Buttons in content-section? (static only) -->
+    {!isDynamic &&
+      buttonsPlacementArray.includes("content-section") &&
+      buttonsArray.length > 0 && (
+        <div class={`${buttonsSectionClass} order-last`}>
+          {buttonsArray.map((btn, idx) => {
+            const defaults = {
+              text: capitalize(collectionName),
+              link: `/${collectionName}`,
+              class: "",
+              variant: "primary",
+            };
+            const props = { ...defaults, ...btn };
+            return (
+              <Button
+                key={idx}
+                href={props.link}
+                className={props.class}
+                ariaLabel={props.text}
+                variant={props.variant}
+              >
+                {props.text}
+              </Button>
+            );
+          })}
+        </div>
+      )}
+
+    <!-- Final child slot if not already at top -->
+    {!childPlacementArray.includes("top-content-section") && (
+      <div class={childSlotClass}>
+        <slot />
+      </div>
+    )}
+  </div>
+</section>

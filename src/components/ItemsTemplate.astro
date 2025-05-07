@@ -1,0 +1,117 @@
+---
+/* ─────────── src/components/ItemsTemplate.astro ─────────── */
+import Card from "./LoopComponents/Card.jsx";
+import { queryItems } from "@/utils/CollectionQueryUtils.js";
+import ClientItemsTemplate from "./ClientItemsTemplate.jsx";
+
+const {
+  /* incoming props */
+  collection,
+  query,
+  items: initialItems,
+  ItemComponent,            // function | string | { component, props }
+  itemsClass = "",
+  itemClass  = "",
+  HasPage,
+  pathname   = "",
+  client,                   // "load" | "idle" | "visible" | undefined
+  ...rest
+} = Astro.props;
+
+/* 1. Build‑time data  */
+let items = initialItems || [];
+if (!initialItems && collection && query) {
+  items = await queryItems(query, collection, pathname);
+}
+
+/* 2. Server‑side component (unchanged) */
+const isObjComponent = typeof ItemComponent === "object" && ItemComponent !== null;
+const RenderComponent = isObjComponent
+  ? ItemComponent.component
+  : ItemComponent || Card;
+
+/* 3. Serialisable key sent to the island */
+let componentKey = "Card";
+if (typeof ItemComponent === "string") {
+  componentKey = ItemComponent;
+} else if (isObjComponent) {
+  const comp = ItemComponent.component;
+  componentKey = typeof comp === "string" ? comp : comp?.name || "Card";
+} else if (typeof ItemComponent === "function") {
+  componentKey = ItemComponent.name || "Card";
+}
+
+/* helper for { component, props } pattern */
+function getItemProps(item) {
+  if (!isObjComponent) return {};
+  const p = ItemComponent.props;
+  return typeof p === "function" ? p(item) : p || {};
+}
+---
+{items?.length ? (
+  <>
+    {/*
+      ────────────────────────────────────────────────
+      CLIENT‑SIDE ISLANDS
+      Each branch hard‑codes its hydration directive.
+      ────────────────────────────────────────────────
+    */}
+    {client === "load" && (
+      <ClientItemsTemplate
+        client:load
+        items={items}
+        componentKey={componentKey}
+        itemsClass={itemsClass}
+        itemClass={itemClass}
+        collectionName={collection}
+        HasPage={HasPage}
+      />
+    )}
+
+    {client === "visible" && (
+      <ClientItemsTemplate
+        client:visible
+        items={items}
+        componentKey={componentKey}
+        itemsClass={itemsClass}
+        itemClass={itemClass}
+        collectionName={collection}
+        HasPage={HasPage}
+      />
+    )}
+
+    {client === "idle" && (
+      <ClientItemsTemplate
+        client:idle
+        items={items}
+        componentKey={componentKey}
+        itemsClass={itemsClass}
+        itemClass={itemClass}
+        collectionName={collection}
+        HasPage={HasPage}
+      />
+    )}
+
+    {/*
+      ────────────────────────────────────────────────
+      STATIC‑ONLY PATH (no hydration)
+      ────────────────────────────────────────────────
+    */}
+    {!client && (
+      <ul class={itemsClass} {...rest}>
+        {items.map((item) => (
+          <RenderComponent
+            key={item.slug}
+            item={item}
+            itemClass={itemClass}
+            collectionName={collection}
+            HasPage={HasPage}
+            {...getItemProps(item)}
+          />
+        ))}
+      </ul>
+    )}
+  </>
+) : (
+  <p>No items found.</p>
+)}

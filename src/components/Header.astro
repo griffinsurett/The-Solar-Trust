@@ -1,0 +1,59 @@
+---
+import { SiteData, ContactData } from "@/content/SiteData";
+import { buildMenuQueries } from "@/utils/ArrayQueryUtils";
+import Menu from "../components/Menu/Menu.astro";
+import MenuItem from "../components/Menu/BarMenu/MenuItem.astro"; // default main menu item
+import { Image } from "astro:assets";
+import Button from "./Button";
+
+const MainNavMenu = [
+  { id: "home", label: "Home", slug: "/" },
+  { id: "about", label: "About Us", slug: "/about-us" },
+  { id: "contact", label: "Contact", slug: "/contact-us", position: "append", weight: 100 },
+];
+
+const breakpoint = "lg";
+---
+<header class="sticky top-0 bg-bg shadow-xl flex justify-between items-center p-[var(--spacing-sm)] sticky top-0 z-[99999]">
+  <a href="/" class="flex items-center">
+    <Image
+      src={SiteData.logo.src}
+      alt={`${SiteData.title} logo`}
+      class="h-auto w-50 hover:scale-105 transition-transform duration-300"
+      format="webp"
+      loading="eager"
+      quality="low"
+      fetchpriority="high"
+      aria-hidden="true"
+    />
+    <!-- <div class="header-text" aria-label="Site identity">
+      <div class="text-xl font-bold">{SiteData.title}</div>
+      <div class="text-sm">{SiteData.tagline}</div>
+    </div>     -->
+  </a>
+
+  <div class="header-right flex justify-center items-center gap-[var(--spacing-sm)]">
+    <Menu 
+    items={await buildMenuQueries({ MainNavMenu })} 
+    breakpoint={breakpoint} 
+    listClass="flex flex-row"
+    barMenu={{
+      menuItem: { component: MenuItem, class: "menu-item" },
+      submenuItem: { component: MenuItem, class: "submenu-class bg-bg z-[999999]" },
+      listClass: "flex gap-[var(--spacing-md)]"
+    }}
+    hamburgerMenu={{
+      hamburgerIconClass: "custom-hamburger-icon",
+      hamburgerIconTransform: true,
+      menuBackground: "bg-bg bg-opacity-75",
+      menuItem: { component: MenuItem, class: "text-text" },
+      submenuItem: { component: MenuItem, class: "mobile-submenu-item" },
+      listClass: "flex flex-col",
+      closeButton: false
+    }}
+    isHierarchical={true}
+  />
+  <Button variant="primary" href={`tel:${ContactData.phone}`}>Call Us: {ContactData.phone}</Button>
+  </div>
+
+</header>
