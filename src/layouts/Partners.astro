@@ -33,7 +33,7 @@ import { Image } from "astro:assets";
     <Image
     src={SiteData.logo.src}
     alt={`${SiteData.title} logo`}
-    class="h-auto w-60 m-0 pb-[var(--spacing-sm)]"
+    class="h-auto w-60 m-0 p-[var(--spacing-sm)]"
     format="webp"
     loading="eager"
     quality="low"
@@ -42,7 +42,7 @@ import { Image } from "astro:assets";
   />
     <slot />
     </Section>
-    <div class="form-container flex justify-center items-center mt-[-70px]">
+    <div class="form-container flex justify-center items-center mt-[-70px] pb-[var(--spacing-lg)]">
       <PartnerForm/>
     </div>
 </BaseLayout>
