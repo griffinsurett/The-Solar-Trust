@@ -10,6 +10,7 @@ import SolarTrustTeam from "@/assets/Solar-Trust-Team.webp";
 import Owner from "@/assets/paul.jpeg";
 import SolarPanels from "@/assets/solar-cell.jpg";
 import Heading from "@/components/Heading";
+import LogoLoop from "@/components/LoopComponents/LogoLoop.astro";
 ---
 
 <ExtendedLayout
@@ -88,68 +89,13 @@ import Heading from "@/components/Heading";
     <Section
       sectionClass="flex justify-center items-center gap-[var(--spacing-lg)]"
       contentClass="flex justify-center items-center flex-col lg:flex-row py-[var(--spacing-lg)] w-8/10"
-      childSlotClass="flex justify-center items-center flex-col lg:flex-row py-[var(--spacing-lg)] gap-[var(--spacing-sm)] w-8/10"
+      itemsClass="flex justify-center items-center flex-col lg:flex-row py-[var(--spacing-lg)] w-8/10"
+      topContentClass="hidden"
+      collection="partners"
+      query="getAll"
+      component={LogoLoop}
     >
-      <Image
-        src={SolarTrustTeam}
-        alt="Solar Trust Team"
-        class="w-167 h-40 my-[var(--spacing-sm)]"
-        width={345}
-        height={123}
-        sizes="430px"
-        loading="lazy"
-        decoding="async"
-        quality={60}
-        fetchpriority="low"
-      />
-      <Image
-        src={SolarTrustTeam}
-        alt="Solar Trust Team"
-        class="w-167 h-40 my-[var(--spacing-sm)]"
-        width={345}
-        height={123}
-        sizes="430px"
-        loading="lazy"
-        decoding="async"
-        quality={60}
-        fetchpriority="low"
-      />
-      <Image
-        src={SolarTrustTeam}
-        alt="Solar Trust Team"
-        class="w-167 h-40 my-[var(--spacing-sm)]"
-        width={345}
-        height={123}
-        sizes="430px"
-        loading="lazy"
-        decoding="async"
-        quality={60}
-        fetchpriority="low"
-      />
-      <Image
-        src={SolarTrustTeam}
-        alt="Solar Trust Team"
-        class="w-167 h-40 my-[var(--spacing-sm)]"
-        width={345}
-        height={123}
-        sizes="430px"
-        loading="lazy"
-        decoding="async"
-        quality={60}
-        fetchpriority="low"
-      />
-      <Image
-        src={SolarTrustTeam}
-        alt="Solar Trust Team"
-        class="w-167 h-40 my-[var(--spacing-sm)]"
-        width={345}
-        height={123}
-        sizes="430px"
-        loading="lazy"
-        decoding="async"
-        quality={60}
-        fetchpriority="low"
-      />
+
     </Section>
   </Section>
   <Section
