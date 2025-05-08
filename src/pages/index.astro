@@ -51,8 +51,7 @@ import LogoLoop from "@/components/LoopComponents/LogoLoop.astro";
       description=`"At ${SiteData.title}, our mission is to prioritize you. When you choose to work with us, you’re not just another client—you’re part of our family. Unlike many companies tied to specific solar installers, we work solely for your best interests. We fight to secure the highest-quality products at the most competitive prices and make sure the process is smooth and stress-free every step of the way. From the first consultation to turning on your solar system, we’ll be by your side, ready to answer any question or resolve any issue. With us, you're never on your own—just call, and we’re here to help."`
       descriptionClass="lg:w-3/5 w-full text-bg text-center text-xl lg:text-2xl italic"
       headingAreaClass="flex flex-col items-center justify-center text-center gap-[var(--spacing-xs)]"
-      childPlacement="top-content-section"
-      ,
+      childPlacement="top-content-section",
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +89,7 @@ import LogoLoop from "@/components/LoopComponents/LogoLoop.astro";
     <Section
       sectionClass="flex justify-center items-center gap-[var(--spacing-lg)]"
       contentClass="flex justify-center items-center flex-col lg:flex-row py-[var(--spacing-lg)] w-8/10"
-      itemsClass="flex justify-center items-center flex-col lg:flex-row py-[var(--spacing-lg)] w-8/10"
+      itemsClass="flex justify-center items-center flex-wrap py-[var(--spacing-lg)] w-full"
       topContentClass="hidden"
       collection="partners"
       query="getAll"
