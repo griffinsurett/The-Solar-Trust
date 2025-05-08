@@ -11,13 +11,13 @@ const FooterMenu = [
   { id: "contact", label: "Contact Us", slug: "/contact-us", weight: 30 },
 ];
 ---
-<footer class="bg-primary text-center flex justify-center items-center">
+<footer class="bg-primary text-center flex justify-center items-center py-[var(--spacing-sm)]">
   <div class="head-foot-container flex flex-col lg:flex-row gap-[var(--spacing-sm)] py-[var(--spacing-md)] lg:p-0 lg:gap-0">
   <a href="/" class="flex items-center justify-center">
     <Image
       src={OrangeBGLogo}
       alt={`${SiteData.title} logo`}
-      class="h-auto w-50 hover:scale-105 transition-transform duration-300"
+      class="h-auto w-50 transition-transform duration-300"
       format="webp"
       loading="eager"
       quality="low"
