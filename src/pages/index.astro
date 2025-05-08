@@ -49,23 +49,24 @@ import Heading from "@/components/Heading";
     sectionClass="min-h-[125vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
     contentClass="flex flex-col-reverse items-center justify-center content-container"
   >
-  <svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="220" height="220"
-  viewBox="0 0 120 120"
-  overflow="hidden"
->
-  <text
-    x="50%" y="50%"
-    dominant-baseline="middle"
-    text-anchor="middle"
-    font-family="serif"
-    font-size="100"
-    fill="currentColor"
-  >“</text>
-</svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="220"
+      height="220"
+      viewBox="0 0 120 120"
+      overflow="hidden"
+    >
+      <text
+        x="50%"
+        y="50%"
+        dominant-baseline="middle"
+        text-anchor="middle"
+        font-family="serif"
+        font-size="100"
+        fill="currentColor">“</text
+      >
+    </svg>
 
-  
     <div class="founder flex justify-center items-center flex-col">
       <Image
         src={Owner}
@@ -83,16 +84,19 @@ import Heading from "@/components/Heading";
   </Section>
 
   <Section
-    sectionClass="text-center flex justify-center min-h-[80vh] lg:min-h-[50vh] items-center flex-col gap-[var(--spacing-lg)]"
-    contentClass="content-container"
-    headingAreaClass="w-full flex justify-center flex-col items-center gap-[var(--spacing-lg)]"
+    sectionClass="flex justify-center min-h-[80vh] lg:min-h-[50vh] items-center flex-col gap-[var(--spacing-lg)]"
+    contentClass="flex justify-center items-center flex-col-reverse lg:flex-row py-[var(--spacing-xl)] w-9/10"
+    topContentClass="lg:w-5/10 w-1/2 py-[var(--spacing-lg)]"
+    headingAreaClass="flex justify-center flex-col items-start gap-[var(--spacing-sm)]"
     heading={{
       text: "Take your first step towards solar.",
       tagName: "h2",
       class: "h2 font-bold text-primary",
     }}
     description="We would love to sit down with you and help you explore your options. In a 60-minute meeting we could help you discover if solar is a good fit for you and your home, and see how much solar could save you. A consulation is FREE of charge and has no strings attached."
-    descriptionClass="lg:w-3/5 w-full text-bg-dark text-center"
+    descriptionClass="lg:w-5/6 w-full text-bg-dark text-left"
+    buttonsSectionClass="flex flex-col justify-center items-start mt-[var(--spacing-sm)]"
+    buttonsPlacement="top-content-section"
     buttons={[
       {
         text: "Book a Consultation",
@@ -100,7 +104,21 @@ import Heading from "@/components/Heading";
         class: "btn-primary",
       },
     ]}
-  />
+    childSlotClass="flex justify-center items-center flex-col lg:flex-row gap-[var(--spacing-lg)] w-8/10 lg:w-1/2"
+  >
+    <Image
+      src={SolarTrustTeam}
+      alt="Solar Trust Team"
+      class="w-125 h-95 my-[var(--spacing-sm)]"
+      width={120}
+      height={120}
+      sizes="120px"
+      loading="lazy"
+      decoding="async"
+      quality={60}
+      fetchpriority="low"
+    />
+  </Section>
 
   <!-- Clients -->
   <!-- <Section
