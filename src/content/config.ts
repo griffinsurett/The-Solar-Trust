@@ -107,7 +107,7 @@ const baseSchema = ({ image }: { image: Function }) =>
   });
 
 export const collections = {
-  clients: defineCollection({
+  partners: defineCollection({
     schema: ({ image }) =>
       baseSchema({ image }),
   }),

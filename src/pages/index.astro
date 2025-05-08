@@ -20,24 +20,8 @@ import Heading from "@/components/Heading";
   <PrimaryHero title={SiteData.title} description={SiteData.description} />
 
   <Section
-    heading={[
-      {
-        text: "Paul Montemurno",
-        tagName: "h2",
-        class: "h4 font-bold text-bg",
-      },
-      {
-        text: "Owner and Founder",
-        tagName: "h6",
-        class: "h6 font-thin text-bg",
-      },
-    ]}
-    ,
-    description=`"At ${SiteData.title}, our mission is to prioritize you. When you choose to work with us, you’re not just another client—you’re part of our family. Unlike many companies tied to specific solar installers, we work solely for your best interests. We fight to secure the highest-quality products at the most competitive prices and make sure the process is smooth and stress-free every step of the way. From the first consultation to turning on your solar system, we’ll be by your side, ready to answer any question or resolve any issue. With us, you're never on your own—just call, and we’re here to help."`
-    descriptionClass="lg:w-3/5 w-full text-bg text-center text-xl lg:text-2xl italic"
-    headingAreaClass="flex flex-col items-center justify-center text-center gap-[var(--spacing-xs)]"
-    childPlacement="top-content-section"
-    ,
+    sectionClass="min-h-[125vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
+    contentClass="flex flex-col-reverse items-center justify-center content-container"
     backgroundMedia={{
       image: {
         src: SolarPanels,
@@ -46,43 +30,128 @@ import Heading from "@/components/Heading";
       },
       // overlayClass: "opacity-60 filter brightness-50 bg-cover bg-center xl:bg-fixed",
     }}
-    sectionClass="min-h-[125vh] flex items-center justify-center z-100 text-bg bg-[#2b2b2b] text-center"
-    contentClass="flex flex-col-reverse items-center justify-center content-container"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="220"
-      height="220"
-      viewBox="0 0 120 120"
-      overflow="hidden"
+    <Section
+      contentClass="flex flex-col-reverse items-center justify-center content-container"
+      heading={[
+        {
+          text: "Paul Montemurno",
+          tagName: "h2",
+          class: "h4 font-bold text-bg",
+        },
+        {
+          text: "Owner and Founder",
+          tagName: "h6",
+          class: "h6 font-thin text-bg",
+        },
+      ]}
+      ,
+      description=`"At ${SiteData.title}, our mission is to prioritize you. When you choose to work with us, you’re not just another client—you’re part of our family. Unlike many companies tied to specific solar installers, we work solely for your best interests. We fight to secure the highest-quality products at the most competitive prices and make sure the process is smooth and stress-free every step of the way. From the first consultation to turning on your solar system, we’ll be by your side, ready to answer any question or resolve any issue. With us, you're never on your own—just call, and we’re here to help."`
+      descriptionClass="lg:w-3/5 w-full text-bg text-center text-xl lg:text-2xl italic"
+      headingAreaClass="flex flex-col items-center justify-center text-center gap-[var(--spacing-xs)]"
+      childPlacement="top-content-section"
+      ,
     >
-      <text
-        x="50%"
-        y="50%"
-        dominant-baseline="middle"
-        text-anchor="middle"
-        font-family="serif"
-        font-size="100"
-        fill="currentColor">“</text
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="220"
+        height="220"
+        viewBox="0 0 120 120"
+        overflow="hidden"
       >
-    </svg>
+        <text
+          x="50%"
+          y="50%"
+          dominant-baseline="middle"
+          text-anchor="middle"
+          font-family="serif"
+          font-size="100"
+          fill="currentColor">“</text
+        >
+      </svg>
 
-    <div class="founder flex justify-center items-center flex-col">
+      <div class="founder flex justify-center items-center flex-col">
+        <Image
+          src={Owner}
+          alt="Solar Trust Team"
+          class="rounded-full w-25 h-25 object-cover my-[var(--spacing-sm)]"
+          width={120}
+          height={120}
+          sizes="120px"
+          loading="lazy"
+          decoding="async"
+          quality={60}
+          fetchpriority="low"
+        />
+      </div>
+    </Section>
+    <Section
+      sectionClass="flex justify-center items-center gap-[var(--spacing-lg)]"
+      contentClass="flex justify-center items-center flex-col lg:flex-row py-[var(--spacing-lg)] w-8/10"
+      childSlotClass="flex justify-center items-center flex-col lg:flex-row py-[var(--spacing-lg)] gap-[var(--spacing-sm)] w-8/10"
+    >
       <Image
-        src={Owner}
+        src={SolarTrustTeam}
         alt="Solar Trust Team"
-        class="rounded-full w-25 h-25 object-cover my-[var(--spacing-sm)]"
-        width={120}
-        height={120}
-        sizes="120px"
+        class="w-167 h-40 my-[var(--spacing-sm)]"
+        width={345}
+        height={123}
+        sizes="430px"
         loading="lazy"
         decoding="async"
         quality={60}
         fetchpriority="low"
       />
-    </div>
+      <Image
+        src={SolarTrustTeam}
+        alt="Solar Trust Team"
+        class="w-167 h-40 my-[var(--spacing-sm)]"
+        width={345}
+        height={123}
+        sizes="430px"
+        loading="lazy"
+        decoding="async"
+        quality={60}
+        fetchpriority="low"
+      />
+      <Image
+        src={SolarTrustTeam}
+        alt="Solar Trust Team"
+        class="w-167 h-40 my-[var(--spacing-sm)]"
+        width={345}
+        height={123}
+        sizes="430px"
+        loading="lazy"
+        decoding="async"
+        quality={60}
+        fetchpriority="low"
+      />
+      <Image
+        src={SolarTrustTeam}
+        alt="Solar Trust Team"
+        class="w-167 h-40 my-[var(--spacing-sm)]"
+        width={345}
+        height={123}
+        sizes="430px"
+        loading="lazy"
+        decoding="async"
+        quality={60}
+        fetchpriority="low"
+      />
+      <Image
+        src={SolarTrustTeam}
+        alt="Solar Trust Team"
+        class="w-167 h-40 my-[var(--spacing-sm)]"
+        width={345}
+        height={123}
+        sizes="430px"
+        loading="lazy"
+        decoding="async"
+        quality={60}
+        fetchpriority="low"
+      />
+    </Section>
   </Section>
-
   <Section
     sectionClass="flex justify-center min-h-[80vh] lg:min-h-[50vh] items-center flex-col gap-[var(--spacing-lg)]"
     contentClass="flex justify-center items-center flex-col-reverse lg:flex-row py-[var(--spacing-xl)] w-8/10"
