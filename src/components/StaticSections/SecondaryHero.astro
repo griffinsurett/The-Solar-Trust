@@ -1,20 +1,30 @@
 ---
 // src/components/StaticSections/SecondaryHero.astro
+import { SiteData } from "@/content/SiteData";
 import Section from "../Section.astro";
 const { title } = Astro.props; // The hero title passed in as a prop
-import HeroBg from "@/assets/background.svg";
+import HeroBg from "@/assets/Landing-Page-Background-1-scaled.jpg";
 ---
 <Section
   backgroundMedia={{
     image: {
       src: HeroBg,
-      imageClass: "filter brightness-50 bg-cover bg-center xl:bg-fixed",
+      imageClass: "filter bg-cover bg-center",
     },
-    overlayClass: "bg-black opacity-50",
   }}
-  heading={[{ text: title, tagName: "h1", class: "h1 text-bg" }]}
-  description=""
-  sectionClass="flex items-center justify-center"
+      heading={[
+        {
+          text: `Partner With Us`,
+          tagName: "h2",
+          class: "h2 font-bold text-bg",
+        },
+        {
+          text: `${SiteData.title}`,
+          tagName: "h6",
+          class: "h6 font-thin text-bg",
+        },
+      ]}
+  sectionClass="flex items-center justify-center min-h-[50vh]"
   contentClass="container mx-auto text-center"
 >
 </Section>

@@ -11,9 +11,10 @@ import Owner from "@/assets/paul.jpeg";
 import SolarPanels from "@/assets/solar-cell.jpg";
 import Heading from "@/components/Heading";
 import LogoLoop from "@/components/LoopComponents/LogoLoop.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<ExtendedLayout
+<BaseLayout
   title="Welcome to Astro!"
   description="Your gateway to amazing projects."
 >
@@ -142,4 +143,4 @@ import LogoLoop from "@/components/LoopComponents/LogoLoop.astro";
     query="getAll"
     heading={{ text: "Our Clients", tagName: "h2" }}
   /> -->
-</ExtendedLayout>
+</BaseLayout>
