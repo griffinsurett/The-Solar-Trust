@@ -85,8 +85,8 @@ import Heading from "@/components/Heading";
 
   <Section
     sectionClass="flex justify-center min-h-[80vh] lg:min-h-[50vh] items-center flex-col gap-[var(--spacing-lg)]"
-    contentClass="flex justify-center items-center flex-col-reverse lg:flex-row py-[var(--spacing-xl)] w-9/10"
-    topContentClass="lg:w-5/10 w-1/2 py-[var(--spacing-lg)]"
+    contentClass="flex justify-center items-center flex-col-reverse lg:flex-row py-[var(--spacing-xl)] w-8/10"
+    topContentClass="py-[var(--spacing-lg)] lg:w-2/3"
     headingAreaClass="flex justify-center flex-col items-start gap-[var(--spacing-sm)]"
     heading={{
       text: "Take your first step towards solar.",
@@ -104,15 +104,15 @@ import Heading from "@/components/Heading";
         class: "btn-primary",
       },
     ]}
-    childSlotClass="flex justify-center items-center flex-col lg:flex-row gap-[var(--spacing-lg)] w-8/10 lg:w-1/2"
+    childSlotClass="flex justify-center items-center flex-col lg:flex-row gap-[var(--spacing-lg)] w-full lg:w-1/3"
   >
     <Image
       src={SolarTrustTeam}
       alt="Solar Trust Team"
-      class="w-125 h-95 my-[var(--spacing-sm)]"
-      width={120}
-      height={120}
-      sizes="120px"
+      class="w-355 h-80 my-[var(--spacing-sm)]"
+      width={510}
+      height={230}
+      sizes="430px"
       loading="lazy"
       decoding="async"
       quality={60}
