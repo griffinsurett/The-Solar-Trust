@@ -15,8 +15,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Welcome to Astro!"
-  description="Your gateway to amazing projects."
+  title=`${SiteData.title} | ${SiteData.tagline}`
+  description={SiteData.description}
 >
   <!-- Hero Section -->
   <PrimaryHero title={SiteData.title} description={SiteData.description} />
