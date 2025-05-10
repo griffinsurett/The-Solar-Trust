@@ -6,8 +6,8 @@ import { SiteData } from "@/content/SiteData";
 import { getCurrentEntryId } from "@/utils/CurrentEntry";
 
 const {
-  inputClasses = "border border-[var(--color-border)] transition-default p-[var(--spacing-sm)] w-full bg-bg placeholder:text-[var(--color-text)] text-text outline-none",
-  wrapperClasses = "mb-[var(--spacing-sm)] w-full",
+  inputClasses = "border border-[var(--color-border)] transition-default p-[var(--spacing-sm)] w-full bg-bg placeholder:text-[var(--color-text)] text-text outline-none flex",
+  wrapperClasses = "mb-[var(--spacing-sm)] w-full flex flex-col items-center",
 } = Astro.props;
 
 // Extract current page identifier
@@ -120,7 +120,7 @@ const currentPage = getCurrentEntryId(Astro);
         required
         class="mr-[var(--spacing-sm)] mt-[4px] w-4 h-4 checked:bg-primary"
       />
-      <label for="consent" class={"m-0"}>
+      <label for="consent" class={"m-0 p-0"}>
         I consent to have {SiteData.title} store my submitted information so they can respond to my inquiry
       </label>
     </div>
