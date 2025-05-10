@@ -2,6 +2,7 @@
 import Form from "@/components/Forms/Form.astro";
 import TextInput from "@/components/Forms/Inputs/TextInput.astro";
 import Textarea from "@/components/Forms/Inputs/Textarea.astro";
+import { SiteData } from "@/content/SiteData";
 import { getCurrentEntryId } from "@/utils/CurrentEntry";
 
 const {
@@ -109,4 +110,18 @@ const currentPage = getCurrentEntryId(Astro);
       wrapperClass={wrapperClasses}
     />
   </div>
+
+    <!-- Consent Checkbox -->
+    <div class="flex items-start cursor-pointer">
+      <input
+        type="checkbox"
+        id="consent"
+        name="consent"
+        required
+        class="mr-[var(--spacing-sm)] mt-[4px] w-4 h-4 checked:bg-primary"
+      />
+      <label for="consent" class={"m-0"}>
+        I consent to have {SiteData.title} store my submitted information so they can respond to my inquiry
+      </label>
+    </div>
 </Form>
