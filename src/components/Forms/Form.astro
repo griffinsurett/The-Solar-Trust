@@ -1,35 +1,55 @@
 ---
-/** Generic <Form> wrapper
+/** Generic <Form> wrapper with built‑in consent checkbox
  *
  * Props
  * ─────────────────────────────────────────────────────────────
- * name            – unique Netlify form name (default "generic-form")
- * method          – HTTP method (default "post")
- * action          – optional success redirect URL
- * netlify         – boolean flag to inject Netlify attrs (default true)
- * honeypotName    – name of the hidden honeypot field (default "bot-field")
- * formClass       – extra classes on <form>
- * submitClass     – default Tailwind classes for the fallback button
- * submitLabel     – text for the fallback button (default "Submit")
+ * name                   – unique Netlify form name (default "generic-form")
+ * method                 – HTTP method (default "post")
+ * action                 – optional form action URL
+ * formClass              – extra classes on the <form>
+ * submitClass            – default Tailwind classes for the submit button
+ * submitLabel            – text for the submit button (default "Submit")
+ * enableSuccessBanner    – show JS success banner on submit?
+ * successBannerMessage   – banner text
+ * successBannerClass     – banner Tailwind classes
+ *
+ * new consent props
+ * ─────────────────────────────────────────────────────────────
+ * showConsent            – boolean: whether to include the consent checkbox (default true)
+ * consentText            – main consent label text
+ * consentLearnMoreLabel  – the link text ("Learn more")
+ * consentLearnMoreUrl    – the URL for your privacy‑policy
+ * consentWrapperClass    – classes for the consent container
+ * consentInputClass      – classes for the checkbox input
+ * consentLabelClass      – classes for the checkbox label
  *
  * Slots
  * ─────────────────────────────────────────────────────────────
- * default         – your input fields
- * submit          – optional custom submit content; if omitted we render a
- *                   default <Button />
+ * default         – your form fields
+ * submit          – optional custom submit button; if omitted we render a default
  */
 import Button from "@/components/Button";
+import { SiteData } from "@/content/SiteData";
 
 const {
-  name = "generic-form",
-  method = "post",
+  name                   = "generic-form",
+  method                 = "post",
   action,
-  formClass = "",
-  submitClass = "w-full mt-[var(--spacing-sm)] justify-center cursor-pointer",
-  submitLabel = "Submit",
-  enableSuccessBanner = false,
-  successBannerMessage = "Thank you for your submission!",
-  successBannerClass = "p-[var(--spacing-sm)] bg-primary text-bg border border-[var(--color-border)]",
+  formClass              = "",
+  submitClass            = "w-full mt-[var(--spacing-sm)] justify-center cursor-pointer",
+  submitLabel            = "Submit",
+  enableSuccessBanner    = false,
+  successBannerMessage   = "Thank you for your submission!",
+  successBannerClass     = "p-[var(--spacing-sm)] bg-primary text-bg border border-[var(--color-border)]",
+
+  // consent defaults:
+  showConsent            = true,
+  consentText            = `I consent to have ${SiteData.title} store my submitted information so they can respond`,
+  consentLearnMoreLabel  = "Learn more",
+  consentLearnMoreUrl    = "/privacy-policy",
+  consentWrapperClass    = "flex items-start text-left mb-[var(--spacing-md)]",
+  consentInputClass      = "mr-[var(--spacing-sm)] mt-[4px] w-4 h-4 checked:bg-primary",
+  consentLabelClass      = "m-0",
 } = Astro.props;
 ---
 
@@ -43,6 +63,25 @@ const {
   data-success-class={successBannerClass}
 >
   <slot />
+
+  {/** — inject required consent checkbox — */}
+  {showConsent && (
+    <div class={consentWrapperClass}>
+      <input
+        type="checkbox"
+        id="consent"
+        name="consent"
+        required
+        class={consentInputClass}
+      />
+      <label for="consent" class={consentLabelClass}>
+        {consentText}&nbsp;
+        <a href={consentLearnMoreUrl} class="underline">
+          {consentLearnMoreLabel}
+        </a>
+      </label>
+    </div>
+  )}
 
   {Astro.slots.has("submit") ? (
     <slot name="submit" />

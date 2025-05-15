@@ -85,17 +85,4 @@ const currentPage = getCurrentEntryId(Astro);
     />
   </div>
 
-    <!-- Consent Checkbox -->
-    <div class="flex items-start cursor-pointer">
-      <input
-        type="checkbox"
-        id="consent"
-        name="consent"
-        required
-        class="mr-[var(--spacing-sm)] mt-[4px] w-4 h-4 checked:bg-primary"
-      />
-      <label for="consent" class={"m-0"}>
-        I consent to have {SiteData.title} store my submitted information so they can respond to my inquiry
-      </label>
-    </div>
 </Form>
