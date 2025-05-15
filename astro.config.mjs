@@ -7,7 +7,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://koiroofandsolar-1nu38.kinsta.page/',
+  site: 'https://the-solar-trust-c8p1b.kinsta.page/',
   server: {
     port: 6500,
   },

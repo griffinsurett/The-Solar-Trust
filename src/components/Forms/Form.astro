@@ -32,24 +32,22 @@ import Button from "@/components/Button";
 import { SiteData } from "@/content/SiteData";
 
 const {
-  name                   = "generic-form",
-  method                 = "post",
+  name = "generic-form",
+  method = "post",
   action,
-  formClass              = "",
-  submitClass            = "w-full mt-[var(--spacing-sm)] justify-center cursor-pointer",
-  submitLabel            = "Submit",
-  enableSuccessBanner    = false,
-  successBannerMessage   = "Thank you for your submission!",
-  successBannerClass     = "p-[var(--spacing-sm)] bg-primary text-bg border border-[var(--color-border)]",
-
-  // consent defaults:
-  showConsent            = true,
-  consentText            = `I consent to have ${SiteData.title} store my submitted information so they can respond`,
-  consentLearnMoreLabel  = "Learn more",
-  consentLearnMoreUrl    = "/privacy-policy",
-  consentWrapperClass    = "flex items-start text-left mb-[var(--spacing-md)]",
-  consentInputClass      = "mr-[var(--spacing-sm)] mt-[4px] w-4 h-4 checked:bg-primary",
-  consentLabelClass      = "m-0",
+  formClass = "",
+  submitClass = "w-full mt-[var(--spacing-sm)] justify-center cursor-pointer",
+  submitLabel = "Submit",
+  enableSuccessBanner = false,
+  successBannerMessage = "Thank you for your submission!",
+  successBannerClass = "p-[var(--spacing-sm)] bg-primary text-bg border border-[var(--color-border)]",
+  showConsent = true,
+  consentText = `I consent to have ${SiteData.title} store my submitted information so they can respond`,
+  consentLearnMoreLabel = "Learn more",
+  consentLearnMoreUrl = "/privacy-policy",
+  consentWrapperClass = "flex items-start text-left mb-[var(--spacing-md)]",
+  consentInputClass = "mr-[var(--spacing-sm)] mt-[4px] w-4 h-4 checked:bg-primary",
+  consentLabelClass = "m-0",
 } = Astro.props;
 ---
 
@@ -65,31 +63,35 @@ const {
   <slot />
 
   {/** — inject required consent checkbox — */}
-  {showConsent && (
-    <div class={consentWrapperClass}>
-      <input
-        type="checkbox"
-        id="consent"
-        name="consent"
-        required
-        class={consentInputClass}
-      />
-      <label for="consent" class={consentLabelClass}>
-        {consentText}&nbsp;
-        <a href={consentLearnMoreUrl} class="underline">
-          {consentLearnMoreLabel}
-        </a>
-      </label>
-    </div>
-  )}
+  {
+    showConsent && (
+      <div class={consentWrapperClass}>
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          required
+          class={consentInputClass}
+        />
+        <label for="consent" class={consentLabelClass}>
+          {consentText}&nbsp;
+          <a href={consentLearnMoreUrl} class="underline">
+            {consentLearnMoreLabel}
+          </a>
+        </label>
+      </div>
+    )
+  }
 
-  {Astro.slots.has("submit") ? (
-    <slot name="submit" />
-  ) : (
-    <Button type="submit" variant="primary" className={submitClass}>
-      {submitLabel}
-    </Button>
-  )}
+  {
+    Astro.slots.has("submit") ? (
+      <slot name="submit" />
+    ) : (
+      <Button type="submit" variant="primary" className={submitClass}>
+        {submitLabel}
+      </Button>
+    )
+  }
 </form>
 
 <script is:inline>
