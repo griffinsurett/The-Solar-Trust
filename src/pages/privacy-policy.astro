@@ -112,7 +112,7 @@ let sectionNumber = 0;
       <li>
         <strong>Phone:</strong>
         <ul>
-          {formatPhoneNumber(ContactData.phone)}
+          <a href={`mailto:${ContactData.phone}`}>{formatPhoneNumber(ContactData.phone)}</a>
         </ul>
       </li>
       <!-- <li>
