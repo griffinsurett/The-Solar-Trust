@@ -12,10 +12,15 @@ const {
 
 // Extract current page identifier
 const currentPage = getCurrentEntryId(Astro);
+const formAction = (
+  import.meta.env.PUBLIC_INTEGRATION_FORMSPREE +
+  import.meta.env.PUBLIC_QUOTE_FORM
+);
 ---
 
 <Form
   name="contact-form"
+  action={formAction}
   enableSuccessBanner={true}
   successBannerMessage="Thank you for your message. We will get in touch with you shortly."
   successBannerClass="p-[var(--spacing-sm)] bg-primary text-bg border border-[var(--color-border)] bg-light-opacity"
