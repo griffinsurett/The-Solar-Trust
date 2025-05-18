@@ -12,7 +12,7 @@ export default async function Button({
   href,
   variant = "primary",
   iconProps = {},
-  showIcon = true,
+  showIcon = false,
   ...props
 }) {
   // 1) Pull in styling from variants
