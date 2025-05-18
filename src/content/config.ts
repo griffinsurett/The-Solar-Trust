@@ -47,6 +47,7 @@ const sectionSchema = z.object({
   component: z.union([z.function(), z.string()]).optional(),
   heading: headingSchema.optional(),
   description: descriptionSchema.optional(),
+  descriptionClass: z.string().optional(),
   buttons: z.array(buttonSchema).optional(),
   buttonsSectionClass: z.string().optional(),
   sectionClass: z.string().optional(),
@@ -60,6 +61,9 @@ const sectionSchema = z.object({
   buttonsPlacement: z.union([z.string(), z.array(z.string())]).optional(),
   childSlotClass: z.string().optional(),
   client: z.enum(["load", "idle", "visible"]).optional(),
+  manualOrder: z.boolean().optional(),
+  sortBy: z.enum(["date", "title", "slug", "id"]).optional(),
+  sortOrder: z.enum(["asc", "desc"]).optional(),
 });
 
 export const QueryItemSchema = z.object({
@@ -95,20 +99,20 @@ const baseSchema = ({ image }: { image: Function }) =>
     featuredImage: image().optional(),
     heading: headingSchema.optional(),
     description: descriptionSchema.optional(),
+    order: z.number().optional(),
     layout: z.string().optional(),
+    itemsLayout: z.string().optional(),
     keywords: z.array(z.string()).optional(),
-    robots: z.string().optional(), 
-    ogType: z.string().optional(),
+    ogType: z.string().optional(), // NEW: Include ogType in individual items too.
     hasPage: z.boolean().optional(),
     sections: z.array(sectionSchema).optional(),
     addToQuery: z.array(QueryItemSchema).optional(),
     tags: z.array(z.string()).optional(),
-    icon: image().optional(),
-  });
+    icon: z.string().optional(),
+});
 
 export const collections = {
   partners: defineCollection({
-    schema: ({ image }) =>
-      baseSchema({ image }),
+    schema: ({ image }) => baseSchema({ image }),
   }),
 };
