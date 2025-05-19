@@ -54,6 +54,11 @@ const sections = data.sections?.length
   ? data.sections
   : meta.itemsSections || [];
 
+  let Content = null;
+  if (typeof entry.render === 'function') {
+    const rendered = await entry.render();
+    Content = rendered.Content;
+  }
   console.log("robots", data.robots);
 ---
 
@@ -66,6 +71,7 @@ const sections = data.sections?.length
   ogType={data.ogType}
   robots={data.robots} 
 >
+{Content && <Content />}
   {
     sections.map((section, i) => (
       <Section
