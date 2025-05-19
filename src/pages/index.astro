@@ -8,6 +8,7 @@ import { SiteData } from "@/content/SiteData";
 import { Image } from "astro:assets";
 import SolarTrustTeam from "@/assets/Solar-Trust-Team.webp";
 import AndrewVideo from "@/assets/andrew-video.mp4";
+import AndrewVideoPoster from "@/assets/andrew-vid-thumb.jpg";
 import Owner from "@/assets/paul.jpeg";
 import SolarPanels from "@/assets/solar-cell.jpg";
 import Heading from "@/components/Heading";
@@ -124,6 +125,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   >
   <Video
     src={AndrewVideo}
+    poster={AndrewVideoPoster}
     title="Solar Trust Overview"
     class="w-auto h-160 lg:h-80 rounded-lg shadow-lg"
     loading="lazy"

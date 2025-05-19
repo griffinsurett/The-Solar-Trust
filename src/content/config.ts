@@ -38,8 +38,6 @@ const buttonSchema = z.object({
   variant: z.enum(["primary", "secondary", "underline"]).optional(),
 });
 
-// Updated sectionSchema using the isolated heading and description schemas.
-// Added new optional properties to match the Section component props.
 const sectionSchema = z.object({
   collection: z.string().optional(),
   query: z.string().optional(),
