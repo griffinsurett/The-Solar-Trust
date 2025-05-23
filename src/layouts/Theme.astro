@@ -3,6 +3,18 @@
 import '../styles/global.css';
 ---
 <!-- You may include additional theme-related meta tags here -->
-<meta name="theme-color" content="#ff6100" />
+<meta name="theme-color" content="" />
 <meta name="apple-mobile-web-app-status-bar-style" content="#ff6100" />
 <link rel="icon" href="/solartrusticon.png" type="image/x-icon" />
+<script>
+  // wait till DOM is ready
+  document.addEventListener("DOMContentLoaded", () => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const primary = rootStyles.getPropertyValue("--color-primary").trim();
+    if (primary) {
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute("content", primary);
+    }
+  });
+</script>
