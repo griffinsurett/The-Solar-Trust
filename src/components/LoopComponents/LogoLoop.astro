@@ -19,7 +19,7 @@ const {
   HasPage,
 } = Astro.props;
 ---
-<li class={itemClass}>
+<article class={itemClass}>
   <Image
     src={item.data.featuredImage}
     alt={item.data.title || item.slug}
@@ -28,4 +28,4 @@ const {
     loading="lazy"
     fetchpriority="low"
   />
-</li>
+</article>

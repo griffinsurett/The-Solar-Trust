@@ -9,7 +9,7 @@ export default function ListItem({ item, collectionName, HasPage }) {
         const effectiveHasPage =
     item.data.hasPage !== undefined ? item.data.hasPage : HasPage;
     return (
-        <div className={`flex items-start space-x-[var(--spacing-md)]`}>
+        <article className={`flex items-start space-x-[var(--spacing-md)]`}>
         <div className={`flex-shrink-0 p-[var(--spacing-sm)] rounded-full`}>
           {item.data.icon && (
             <img
@@ -30,6 +30,6 @@ export default function ListItem({ item, collectionName, HasPage }) {
             {item.data.description || item.body}
           </p>
         </div>
-      </div>
+      </article>
       );
 };
