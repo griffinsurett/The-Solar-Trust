@@ -103,6 +103,14 @@ p {
   }
   
   @layer utilities {
+    .hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
+}
+
   .scroll-fade-up {
     animation: fade-in-up linear;
     animation-timeline: view();
