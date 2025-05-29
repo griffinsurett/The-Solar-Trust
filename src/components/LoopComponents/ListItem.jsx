@@ -1,6 +1,6 @@
 // src/components/ListItem.jsx
 import React from 'react';
-import Heading from '../Heading';
+import Heading from '@/components/Heading';
 
 /**
  * A list item with an icon, colored icon background, heading, and description.

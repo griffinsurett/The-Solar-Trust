@@ -1,8 +1,8 @@
 ---
 // src/pages/index.astro
 import ExtendedLayout from "@/layouts/ExtendedLayout.astro";
-import Section from "@/components/Section.astro";
-import PrimaryHero from "@/components/StaticSections/PrimaryHero.astro";
+import Section from "@/components/Section/Section.astro";
+import PrimaryHero from "@/components/Section/StaticSections/PrimaryHero.astro";
 import HeroBg from "@/assets/background.svg";
 import { SiteData } from "@/content/SiteData";
 import { Image } from "astro:assets";
@@ -21,7 +21,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   title=`${SiteData.title} | ${SiteData.tagline}`
   description={SiteData.description}
 >
-
   <!-- Hero Section -->
   <PrimaryHero title={SiteData.title} description={SiteData.description} />
   <Section
@@ -50,7 +49,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           tagName: "h6",
           class: "h6 font-thin text-bg",
         },
-      ]},
+      ]}
+      ,
       description=`"At ${SiteData.title}, our mission is to prioritize you. When you choose to work with us, you’re not just another client—you’re part of our family. Unlike many companies tied to specific solar installers, we work solely for your best interests. We fight to secure the highest-quality products at the most competitive prices and make sure the process is smooth and stress-free every step of the way. From the first consultation to turning on your solar system, we’ll be by your side, ready to answer any question or resolve any issue. With us, you're never on your own—just call, and we’re here to help."`
       descriptionClass="lg:w-3/5 w-full text-bg text-center text-xl lg:text-xl italic"
       headingAreaClass="flex flex-col items-center justify-center text-center gap-[var(--spacing-xs)]"
@@ -96,9 +96,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       collection="partners"
       query="getAll"
       component={LogoLoop}
-    >
-
-    </Section>
+    />
   </Section>
   <Section
     sectionClass="flex justify-center min-h-[80vh] lg:min-h-[50vh] items-center flex-col gap-[var(--spacing-lg)]"
@@ -123,17 +121,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     ]}
     childSlotClass="flex justify-center items-center flex-col lg:flex-row gap-[var(--spacing-lg)] w-full lg:w-1/3"
   >
-  <Video
-    src={AndrewVideo}
-    poster={AndrewVideoPoster}
-    title="Solar Trust Overview"
-    class="w-auto h-160 lg:h-80 rounded-lg shadow-lg"
-    loading="lazy"
-    decoding="async"
-    quality={60}
-    fetchpriority="low"
-    controls="true"
-  />
+    <Video
+      src={AndrewVideo}
+      poster={AndrewVideoPoster}
+      title="Solar Trust Overview"
+      class="w-auto h-160 lg:h-80 rounded-lg shadow-lg"
+      loading="lazy"
+      decoding="async"
+      quality={60}
+      fetchpriority="low"
+      controls="true"
+    />
     <!-- <Image
       src={SolarTrustTeam}
       alt="Solar Trust Team"

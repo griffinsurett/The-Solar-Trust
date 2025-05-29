@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import Modal from "./Modal.jsx";
-import Button from "./Button.jsx";
+import Button from "./Button/Button.jsx";
 
 export default function SampleModalTest() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-    {/* server button */}
-    <Button link='/sample'>Button</Button>
+      {/* server button */}
+      <Button link="/sample">Button</Button>
       <div className="p-[var(--spacing-lg)]">
-        <Button
-          onClick={() => setIsOpen(true)}
-          variant="primary"
-        >
+        <Button onClick={() => setIsOpen(true)} variant="primary">
           Open Test Modal
         </Button>
       </div>

@@ -1,16 +1,22 @@
 ---
 // src/pages/cookie-policy.astro
-import SecondaryHero from "@/components/StaticSections/SecondaryHero.astro";
+import SecondaryHero from "@/components/Section/StaticSections/SecondaryHero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SiteData, ContactData } from "@/content/SiteData";
 import { formatPhoneNumber } from "@/utils/ContentUtils";
 
 const effectiveDate = "May 14, 2025";
 ---
-<BaseLayout title="Cookie Policy" description={`How ${SiteData.title} uses cookies.`}>
+
+<BaseLayout
+  title="Cookie Policy"
+  description={`How ${SiteData.title} uses cookies.`}
+>
   <SecondaryHero title="Cookie Policy" />
 
-  <section class="prose mx-auto py-[var(--spacing-lg)] px-[var(--spacing-lg)] w-9/10 lg:w-8/10">
+  <section
+    class="prose mx-auto py-[var(--spacing-lg)] px-[var(--spacing-lg)] w-9/10 lg:w-8/10"
+  >
     <p>
       For details on how we collect and use all personal data, see our
       <a href="/privacy-policy" class="underline">Privacy Policy</a>.
@@ -21,8 +27,9 @@ const effectiveDate = "May 14, 2025";
 
     <h2>What Are Cookies?</h2>
     <p>
-      Cookies are small text files placed by your browser when you visit a website.  
-      They store data such as session identifiers, preferences, and analytics.
+      Cookies are small text files placed by your browser when you visit a
+      website. They store data such as session identifiers, preferences, and
+      analytics.
     </p>
 
     <h2>How We Use Cookies</h2>
@@ -43,13 +50,13 @@ const effectiveDate = "May 14, 2025";
 
     <h2>Managing Cookies</h2>
     <p>
-      You can disable cookies via your browser settings.  
-      Please note that some features may not work correctly if cookies are disabled.
+      You can disable cookies via your browser settings. Please note that some
+      features may not work correctly if cookies are disabled.
     </p>
 
     <h2>Detected Cookies</h2>
     <p>
-      This table lists every cookie set by your browser for {SiteData.title}.  
+      This table lists every cookie set by your browser for {SiteData.title}.
       It’s generated dynamically—any new cookies will appear automatically.
     </p>
     <div id="cookie-table-container">
@@ -58,15 +65,18 @@ const effectiveDate = "May 14, 2025";
 
     <h2>Your Rights & Consent</h2>
     <p>
-      Under GDPR, you must consent before non‑essential cookies are set.  
-      Under CCPA, you can opt out of the sale of your personal data.
+      Under GDPR, you must consent before non‑essential cookies are set. Under
+      CCPA, you can opt out of the sale of your personal data.
     </p>
 
     <h2>Contact Us</h2>
     <p>If you have questions, reach us at:</p>
     <ul>
-      <li>Email: <a href={`mailto:${ContactData.email}`}>{ContactData.email}</a></li>
-      <li>Phone:
+      <li>
+        Email: <a href={`mailto:${ContactData.email}`}>{ContactData.email}</a>
+      </li>
+      <li>
+        Phone:
         <ul>
           {formatPhoneNumber(ContactData.phone)}
         </ul>
@@ -79,7 +89,10 @@ const effectiveDate = "May 14, 2025";
     document.addEventListener("DOMContentLoaded", () => {
       document.cookie = "sampleCookie=sample; SameSite=None; Secure";
       const raw = document.cookie || "";
-      const pairs = raw.split(";").map(s => s.trim()).filter(Boolean);
+      const pairs = raw
+        .split(";")
+        .map((s) => s.trim())
+        .filter(Boolean);
       const container = document.getElementById("cookie-table-container");
       const table = document.createElement("table");
       table.className = "min-w-full border-collapse";
@@ -91,15 +104,17 @@ const effectiveDate = "May 14, 2025";
           </tr>
         </thead>
         <tbody>
-          ${pairs.map(pair => {
-            const [name, ...valParts] = pair.split("=");
-            const value = valParts.join("=");
-            return `
+          ${pairs
+            .map((pair) => {
+              const [name, ...valParts] = pair.split("=");
+              const value = valParts.join("=");
+              return `
               <tr>
                 <td class="border px-4 py-2">${name}</td>
                 <td class="border px-4 py-2">${decodeURIComponent(value)}</td>
               </tr>`;
-          }).join("")}
+            })
+            .join("")}
         </tbody>
       `;
       container.innerHTML = "";

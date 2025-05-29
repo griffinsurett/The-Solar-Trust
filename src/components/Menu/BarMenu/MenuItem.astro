@@ -8,22 +8,24 @@ const {
   item,
   isHierarchical = true,
   depth = 0,
-  menuItem,           // { component, class, submenuArrow }
-  submenuItem,        // { component, class, submenuArrow }
+  menuItem, // { component, class, submenuArrow }
+  submenuItem, // { component, class, submenuArrow }
   breakpoint,
-  active = false,     // whether this route is active
+  active = false, // whether this route is active
 } = Astro.props;
 
-import Button from "@/components/Button.jsx";
+import Button from "@/components/Button/Button.jsx";
 import SubMenu from "./SubMenu.astro";
 
 // Does this item have children?
-const hasSub = isHierarchical && Array.isArray(item.children) && item.children.length > 0;
+const hasSub =
+  isHierarchical && Array.isArray(item.children) && item.children.length > 0;
 
 // Base class from the menu config
 const baseClass = menuItem?.class || "";
 const arrow = menuItem?.submenuArrow || "▼";
 ---
+
 <li class="relative hamburger-menu-item">
   <!--
     Use the link variant, but append "!text-primary !font-bold"
@@ -38,21 +40,25 @@ const arrow = menuItem?.submenuArrow || "▼";
     }`}
   >
     {item.label}
-    {hasSub && (
-      <span class="arrow ml-[var(--spacing-sm)] text-base transition-transform duration-200">
-        {arrow}
-      </span>
-    )}
+    {
+      hasSub && (
+        <span class="arrow ml-[var(--spacing-sm)] text-base transition-transform duration-200">
+          {arrow}
+        </span>
+      )
+    }
   </Button>
 
-  {hasSub && (
-    <SubMenu
-      items={item.children}
-      depth={depth + 1}
-      menuItem={menuItem}
-      submenuItem={submenuItem}
-      isHierarchical={isHierarchical}
-      breakpoint={breakpoint}
-    />
-  )}
+  {
+    hasSub && (
+      <SubMenu
+        items={item.children}
+        depth={depth + 1}
+        menuItem={menuItem}
+        submenuItem={submenuItem}
+        isHierarchical={isHierarchical}
+        breakpoint={breakpoint}
+      />
+    )
+  }
 </li>

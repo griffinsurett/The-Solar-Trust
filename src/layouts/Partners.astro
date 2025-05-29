@@ -1,13 +1,14 @@
 ---
 // src/layouts/ExtendedLayout.astro
-import SecondaryHero from "@/components/StaticSections/SecondaryHero.astro";
+import SecondaryHero from "@/components/Section/StaticSections/SecondaryHero.astro";
 import BaseLayout from "./BaseLayout.astro";
-import Section from "@/components/Section.astro";
-import PartnerForm from "@/components/Forms/PartnerForm.astro";
+import Section from "@/components/Section/Section.astro";
+import PartnerForm from "@/components/Form/Forms/PartnerForm.astro";
 import { SiteData } from "@/content/SiteData";
 import HeroBg from "@/assets/Landing-Page-Background-1-scaled.jpg";
 import { Image } from "astro:assets";
 ---
+
 <BaseLayout {...Astro.props}>
   <Section
     title="Welcome to Solar Trust"
@@ -19,30 +20,32 @@ import { Image } from "astro:assets";
         imageClass: "filter bg-cover bg-center",
       },
     }}
-        heading={[
-          {
-            text: `Partner With Us`,
-            tagName: "h2",
-            class: "h2 font-bold text-bg",
-          },
-        ]}
+    heading={[
+      {
+        text: `Partner With Us`,
+        tagName: "h2",
+        class: "h2 font-bold text-bg",
+      },
+    ]}
     sectionClass="flex items-center justify-center min-h-[50vh]"
     contentClass="container mx-auto text-center"
     childSlotClass="flex flex-col justify-center items-center"
-    >
+  >
     <Image
-    src={SiteData.logo.src}
-    alt={`${SiteData.title} logo`}
-    class="h-auto w-60 m-0 p-[var(--spacing-sm)]"
-    format="webp"
-    loading="eager"
-    quality="low"
-    fetchpriority="high"
-    aria-hidden="true"
-  />
+      src={SiteData.logo.src}
+      alt={`${SiteData.title} logo`}
+      class="h-auto w-60 m-0 p-[var(--spacing-sm)]"
+      format="webp"
+      loading="eager"
+      quality="low"
+      fetchpriority="high"
+      aria-hidden="true"
+    />
     <slot />
-    </Section>
-    <div class="form-container flex justify-center items-center mt-[-70px] pb-[var(--spacing-lg)]">
-      <PartnerForm/>
-    </div>
+  </Section>
+  <div
+    class="form-container flex justify-center items-center mt-[-70px] pb-[var(--spacing-lg)]"
+  >
+    <PartnerForm />
+  </div>
 </BaseLayout>

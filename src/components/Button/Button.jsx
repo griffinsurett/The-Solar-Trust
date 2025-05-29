@@ -1,6 +1,6 @@
 // src/components/Button.jsx
-import ButtonIcon from "./ButtonIcon";
-import { ButtonVariants } from "./ButtonVariants.js";
+import ButtonIcon from "@/components/Button/ButtonIcon.jsx";
+import { ButtonVariants } from "@/components/Button/ButtonVariants.js";
 
 export default async function Button({
   as: ComponentProp,
@@ -48,7 +48,9 @@ export default async function Button({
 
   return (
     <ComponentFinal
-      {...(ComponentFinal === "button" ? { type } : { href: additionalProps.href })}
+      {...(ComponentFinal === "button"
+        ? { type }
+        : { href: additionalProps.href })}
       onClick={computedDisabled ? undefined : onClick}
       className={combinedClasses}
       {...(ComponentFinal === "button" ? additionalProps : {})}

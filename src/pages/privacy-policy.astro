@@ -1,6 +1,6 @@
 ---
 // src/pages/privacy-policy.astro
-import SecondaryHero from "@/components/StaticSections/SecondaryHero.astro";
+import SecondaryHero from "@/components/Section/StaticSections/SecondaryHero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SiteData, ContactData } from "@/content/SiteData";
 import { formatPhoneNumber } from "@/utils/ContentUtils";
@@ -112,7 +112,9 @@ let sectionNumber = 0;
       <li>
         <strong>Phone:</strong>
         <ul>
-          <a href={`mailto:${ContactData.phone}`}>{formatPhoneNumber(ContactData.phone)}</a>
+          <a href={`mailto:${ContactData.phone}`}
+            >{formatPhoneNumber(ContactData.phone)}</a
+          >
         </ul>
       </li>
       <!-- <li>

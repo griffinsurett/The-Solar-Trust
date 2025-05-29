@@ -1,4 +1,4 @@
-import Button from "../Button.jsx";
+import Button from "../Button/Button.jsx";
 
 /**
  * Card component for rendering an individual item.
@@ -11,12 +11,14 @@ export default function Card({ item, collectionName, HasPage }) {
     item.data.hasPage !== undefined ? item.data.hasPage : HasPage;
   return (
     <article className="card p-[var(--spacing-sm)]">
-      <h3 className="mb-[var(--spacing-sm)] text-[var(--color-text)]">{item.data.title}</h3>
-      <p className="mb-[var(--spacing-sm)]">{item.data.description || item.body}</p>
+      <h3 className="mb-[var(--spacing-sm)] text-[var(--color-text)]">
+        {item.data.title}
+      </h3>
+      <p className="mb-[var(--spacing-sm)]">
+        {item.data.description || item.body}
+      </p>
       {effectiveHasPage && (
-        <Button href={`/${collectionName}/${item.slug}`}>
-          View More
-        </Button>
+        <Button href={`/${collectionName}/${item.slug}`}>View More</Button>
       )}
     </article>
   );

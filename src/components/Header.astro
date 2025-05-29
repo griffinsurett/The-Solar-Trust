@@ -4,64 +4,78 @@ import { buildMenuQueries } from "@/utils/ArrayQueryUtils";
 import Menu from "../components/Menu/Menu.astro";
 import MenuItem from "../components/Menu/BarMenu/MenuItem.astro"; // default main menu item
 import { Image } from "astro:assets";
-import Button from "./Button";
+import Button from "./Button/Button";
 import PhoneIcon from "./Phone";
 
 const MainNavMenu = [
   // { id: "home", label: "Home", slug: "/" },
-  { id: "quote", label: "Get Quote", slug: "/", position: "append", weight: 100 },
+  {
+    id: "quote",
+    label: "Get Quote",
+    slug: "/",
+    position: "append",
+    weight: 100,
+  },
   { id: "partner", label: "Partner With Us", slug: "/partners", weight: 10 },
 ];
 
 const breakpoint = "lg";
 ---
-<header class="sticky top-0 bg-bg shadow-xl flex justify-center items-center z-[99999]">
-  <div class="head-foot-container">
-  <a href="/" class="flex items-center">
-    <Image
-      src={SiteData.logo.src}
-      alt={`${SiteData.title} logo`}
-      class="h-auto w-50 hover:scale-105 transition-transform duration-300"
-      format="webp"
-      loading="eager"
-      quality="low"
-      fetchpriority="high"
-      aria-hidden="true"
-    />
-  </a>
 
-  <div class="header-right flex flex-row-reverse lg:flex-row justify-center items-center gap-[var(--spacing-sm)]">
-    <Menu 
-    items={await buildMenuQueries({ MainNavMenu })} 
-    breakpoint={breakpoint} 
-    listClass="flex flex-row"
-    barMenu={{
-      menuItem: { component: MenuItem, class: "menu-item px-[var(--spacing-sm)] text-heading" },
-      submenuItem: { component: MenuItem, class: "submenu-class bg-bg z-[999999]" },
-      listClass: "flex gap-[var(--spacing-md)] uppercase font-light"
-    }}
-    hamburgerMenu={{
-      hamburgerIconClass: "custom-hamburger-icon text-primary",
-      hamburgerIconTransform: true,
-      menuBackground: "bg-bg bg-opacity-75",
-      menuItem: { component: MenuItem, class: "text-text" },
-      submenuItem: { component: MenuItem, class: "mobile-submenu-item" },
-      listClass: "flex flex-col",
-      closeButton: false
-    }}
-    isHierarchical={true}
-  />
-  <div class="button-container">
-    <div class="hidden lg:flex">
-      <Button variant="primary" href={`/`}>{ContactData.phone}</Button>
-    </div>
-    <a href={`tel:${ContactData.phone}`}>
-      <PhoneIcon className="lg:hidden block h-6 w-auto text-bg-dark"></PhoneIcon>
+<header
+  class="sticky top-0 bg-bg shadow-xl flex justify-center items-center z-[99999]"
+>
+  <div class="head-foot-container">
+    <a href="/" class="flex items-center">
+      <Image
+        src={SiteData.logo.src}
+        alt={`${SiteData.title} logo`}
+        class="h-auto w-50 hover:scale-105 transition-transform duration-300"
+        format="webp"
+        loading="eager"
+        quality="low"
+        fetchpriority="high"
+        aria-hidden="true"
+      />
     </a>
 
+    <div
+      class="header-right flex flex-row-reverse lg:flex-row justify-center items-center gap-[var(--spacing-sm)]"
+    >
+      <Menu
+        items={await buildMenuQueries({ MainNavMenu })}
+        breakpoint={breakpoint}
+        listClass="flex flex-row"
+        barMenu={{
+          menuItem: {
+            component: MenuItem,
+            class: "menu-item px-[var(--spacing-sm)] text-heading",
+          },
+          submenuItem: {
+            component: MenuItem,
+            class: "submenu-class bg-bg z-[999999]",
+          },
+          listClass: "flex gap-[var(--spacing-md)] uppercase font-light",
+        }}
+        hamburgerMenu={{
+          hamburgerIconClass: "custom-hamburger-icon text-primary",
+          hamburgerIconTransform: true,
+          menuBackground: "bg-bg bg-opacity-75",
+          menuItem: { component: MenuItem, class: "text-text" },
+          submenuItem: { component: MenuItem, class: "mobile-submenu-item" },
+          listClass: "flex flex-col",
+          closeButton: false,
+        }}
+        isHierarchical={true}
+      />
+      <div class="button-container">
+        <div class="hidden lg:flex">
+          <Button variant="primary" href={`/`}>{ContactData.phone}</Button>
+        </div>
+        <a href={`tel:${ContactData.phone}`}>
+          <PhoneIcon className="lg:hidden block h-6 w-auto text-bg-dark" />
+        </a>
+      </div>
+    </div>
   </div>
-</div>
-  </div>
-  
-
 </header>

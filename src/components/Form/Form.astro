@@ -28,7 +28,7 @@
  * default         – your form fields
  * submit          – optional custom submit button; if omitted we render a default
  */
-import Button from "@/components/Button";
+import Button from "@/components/Button/Button";
 import { SiteData } from "@/content/SiteData";
 
 const {
@@ -109,7 +109,7 @@ const {
               method: form.method.toUpperCase(),
               headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-                "Accept": "application/json"
+                Accept: "application/json",
               },
               body: data.toString(),
             });
@@ -142,4 +142,3 @@ const {
       });
   });
 </script>
-
