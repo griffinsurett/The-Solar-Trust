@@ -24,7 +24,7 @@ const meta = await getCollectionMeta(collection).catch(() => ({}));
 const spec = meta.layout || "../../layouts/ExtendedLayout.astro";
 
 // 3) Glob‑register layouts
-const layoutImporters = import.meta.glob("../../layouts/*.astro");
+const layoutImporters = import.meta.glob("../../layouts/**/*.astro");
 
 // 4) Load the selected layout
 const importer = layoutImporters[spec];

@@ -40,7 +40,7 @@ const spec =
   meta.itemsLayout || meta.layout || "../../layouts/ExtendedLayout.astro";
 
 // 3) Register all layouts two levels up
-const layoutImporters = import.meta.glob("../../layouts/*.astro");
+const layoutImporters = import.meta.glob("../../layouts/**/*.astro");
 
 // 4) Lookup and import the chosen layout
 const importer = layoutImporters[spec];
