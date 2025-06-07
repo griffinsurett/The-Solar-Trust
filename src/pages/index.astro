@@ -7,8 +7,10 @@ import HeroBg from "@/assets/background.svg";
 import { SiteData } from "@/content/SiteData";
 import { Image } from "astro:assets";
 import SolarTrustTeam from "@/assets/Solar-Trust-Team.webp";
-import AndrewVideo from "@/assets/andrew-video.mp4";
-import AndrewVideoPoster from "@/assets/andrew-vid-thumb.jpg";
+import PrequalifyVideo from "/prequalify.mov";
+import AwesomeInstallVideo from "/awesomeinstallation.mov";
+import PrequalifyPoster from "@/assets/prequalify-poster.JPG";
+import AwesomeInstallPoster from "@/assets/andrew-vid-thumb.jpg";
 import Owner from "@/assets/paul.jpeg";
 import SolarPanels from "@/assets/solar-cell.jpg";
 import Heading from "@/components/Heading";
@@ -122,8 +124,19 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     childSlotClass="flex justify-center items-center flex-col lg:flex-row gap-[var(--spacing-lg)] w-full lg:w-1/3"
   >
     <Video
-      src={AndrewVideo}
-      poster={AndrewVideoPoster}
+      src={AwesomeInstallVideo}
+      poster={AwesomeInstallPoster}
+      title="Solar Trust Overview"
+      class="w-auto h-160 lg:h-80 rounded-lg shadow-lg"
+      loading="lazy"
+      decoding="async"
+      quality={60}
+      fetchpriority="low"
+      controls="true"
+    />
+     <Video
+      src={PrequalifyVideo}
+      poster={PrequalifyPoster}
       title="Solar Trust Overview"
       class="w-auto h-160 lg:h-80 rounded-lg shadow-lg"
       loading="lazy"
