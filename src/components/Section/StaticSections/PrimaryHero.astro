@@ -2,6 +2,7 @@
 // src/components/StaticSections/PrimaryHero.astro
 import Section from "@/components/Section/Section.astro";
 import HeroBg from "@/assets/Landing-Page-Background-1-scaled.jpg";
+import SolarTrustTeamPhoto from "@/assets/solar-trust-team.jpeg";
 import { SiteData } from "@/content/SiteData";
 import { Image } from "astro:assets";
 import ContactForm from "@/components/Form/Forms/ContactForm.astro";
@@ -14,7 +15,7 @@ import Heading from '@/components/Heading';
   backgroundMedia={{
     image: {
       src: HeroBg,
-      imageClass: "filter bg-cover bg-center",
+        imageClass: "filter bg-cover bg-center xl:bg-fixed",
     },
     // overlayClass: "bg-black opacity-50",
   }}
@@ -33,7 +34,7 @@ import Heading from '@/components/Heading';
     childSlotClass="order-1 text-center md:text-left flex justify-center items-center"
     contentClass="flex flex-col-reverse"
   >
-    <Image
+    <!-- <Image
       src={SiteData.logo.src}
       alt={`${SiteData.title} logo`}
       class="h-auto w-150"
@@ -42,8 +43,18 @@ import Heading from '@/components/Heading';
       quality="low"
       fetchpriority="high"
       aria-hidden="true"
-    />
+    /> -->
   </Section>
+    <Image
+      src={SolarTrustTeamPhoto}
+      alt={`${SiteData.title} logo`}
+      class="h-auto w-150"
+      format="webp"
+      loading="eager"
+      quality="low"
+      fetchpriority="high"
+      aria-hidden="true"
+    />
   <div class="form-container lg:w-1/2 bg-text/85 shadow-lg p-[var(--spacing-lg)]">
     <Heading tagName={"h3"}>
       Get Quote
