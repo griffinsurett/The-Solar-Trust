@@ -17,6 +17,8 @@ import Heading from "@/components/Heading";
 import Video from "@/components/Video.astro";
 import LogoLoop from "@/components/LoopComponents/LogoLoop.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const videoClass = "w-auto h-auto lg:h-80 rounded-lg shadow-lg";
 ---
 
 <BaseLayout
@@ -127,7 +129,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       src={AwesomeInstallVideo}
       poster={AwesomeInstallPoster}
       title="Solar Trust Overview"
-      class="w-auto h-160 lg:h-80 rounded-lg shadow-lg"
+      class={videoClass}
       loading="lazy"
       decoding="async"
       quality={60}
@@ -138,7 +140,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       src={PrequalifyVideo}
       poster={PrequalifyPoster}
       title="Solar Trust Overview"
-      class="w-auto h-160 lg:h-80 rounded-lg shadow-lg"
+      class={videoClass}
       loading="lazy"
       decoding="async"
       quality={60}
