@@ -13,7 +13,7 @@ export const SiteData = {
 
 export const ContactData = {
     email: "info@thesolartrust.com",
-    phone: "(856) 430-9833",
+    phone: "(856) 383-9386",
 }
 
 export const SocialData = [
