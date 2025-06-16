@@ -6,6 +6,8 @@ import react from '@astrojs/react';
 import partytown from '@astrojs/partytown';
 import { config as loadDotenv } from 'dotenv';
 
+import sitemap from '@astrojs/sitemap';
+
 // ① Only load .env when NODE_ENV !== 'production'
 if (process.env.NODE_ENV !== 'production') {
   loadDotenv();
@@ -36,5 +38,5 @@ export default defineConfig({
       },
     },
   },
-  integrations: [mdx(), react(), partytown()],
+  integrations: [mdx(), react(), partytown(), sitemap()],
 });
