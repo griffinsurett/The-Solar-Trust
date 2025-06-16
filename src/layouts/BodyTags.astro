@@ -1,8 +1,11 @@
 ---
 // BodyTags.astro
+// src/layouts/Head.astro
+const GTM_ID = import.meta.env.PUBLIC_INTEGRATION_GTM
+console.log("GTM ID:", GTM_ID);
 ---
  <!-- Marketing Tags such as GA, FB Pixel, etc -->
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFCXPM4R"
+<noscript><iframe src=`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
