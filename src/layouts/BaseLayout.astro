@@ -2,7 +2,7 @@
 // src/layouts/BaseLayout.astro
 import SEO from '@/layouts/SEO.astro';
 import Theme from '@/layouts/Theme.astro';
-import Marketing from '@/layouts/Marketing.astro';
+import HeadTag from '@/layouts/Head.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { SiteData } from '@/content/SiteData';
@@ -25,6 +25,7 @@ resetSectionIds();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <HeadTag />
   <SEO
     title={title}
     description={description}
@@ -39,7 +40,11 @@ resetSectionIds();
   <slot name="head" />
 </head>
 <body class="m-0 p-0 w-full h-full overflow-x-hidden">
-      <Marketing />
+    <!-- Marketing Tags such as GA, FB Pixel, etc -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFCXPM4R"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <AnimationLayout>
     <Header />
     <main class="min-h-[80vh] bg-[var(--color-bg)] text-[var(--color-text)]">
